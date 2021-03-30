@@ -1,5 +1,6 @@
 package com.thippeshhirenallur.catalogmanagementplatform.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Category;
+import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
 import com.thippeshhirenallur.catalogmanagementplatform.service.CategoryService;
 
 @RestController
@@ -32,6 +34,16 @@ public class CategoryController {
 	public ResponseEntity<List<Category>> getCategories() {
 		List<Category> categories = categoryService.getCategories();
 		return new ResponseEntity<>(categories, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "{categoryName}")
+	public ResponseEntity<Category> getCategoriesByName(@PathVariable final String categoryName) {
+		List<Category> categories = categoryService.getCategories();
+		Category category = null;
+		for (int x = 0; x<categories.size();x++)
+			if(categories.get(x).getCategoryName().equals(categoryName))
+				category = categories.get(x);
+		return new ResponseEntity<>(category, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "{categoryid}")

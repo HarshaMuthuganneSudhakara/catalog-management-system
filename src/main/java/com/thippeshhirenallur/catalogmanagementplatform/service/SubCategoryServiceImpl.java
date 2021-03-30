@@ -30,7 +30,7 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 		List<SubCategory> subCategories = getSubCategoriesByCategory(categoryId);
 		SubCategory subCategoryToUpdate = getSubCategory(subCategoryId, subCategories);
 		if (subCategoryToUpdate != null) {
-			subCategoryToUpdate.setCategory(subCategory.getCategory());
+			subCategoryToUpdate.setCategoryId(subCategory.getCategoryId());
 			subCategoryToUpdate.setSubCategoryName(subCategory.getSubCategoryName());
 		}
 		return subCategoryToUpdate;

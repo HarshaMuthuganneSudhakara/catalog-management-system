@@ -3,6 +3,9 @@ package com.thippeshhirenallur.catalogmanagementplatform.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,34 +21,34 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productId;
 
+	@NotEmpty(message = "PRODUCT_NAME cannot be null or empty")
 	@Column(name = "PRODUCT_NAME")
 	private String productName;
 
+	@NotEmpty(message = "DESCRIPTION cannot be null or empty")
 	@Column(name = "DESCRIPTION")
 	private String description;
 
+	@NotEmpty(message = "URL cannot be null or empty")
 	@Column(name = "URL")
 	private String url;
 
+	@NotEmpty(message = "CURRENCY cannot be null or empty")
 	@Column(name = "CURRENCY")
 	private String currency;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY_ID")
-	private Category category;
+	@NotNull(message = "CATEGORY_ID cannot be null or empty")
+	@Column(name = "CATEGORY_ID")
+	private Integer categoryId;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "SUBCATEGORY_ID")
-	private SubCategory subcategory;
+	@NotNull(message = "SUBCATEGORY_ID cannot be null or empty")
+	@Column(name = "SUBCATEGORY_ID")
+	private Integer subcategoryId;
 	
-	@OneToMany(mappedBy = "product", cascade = {
-	        CascadeType.ALL
-	    })
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Media> medias;
 	
-	@OneToMany(mappedBy = "product", cascade = {
-	        CascadeType.ALL
-	    })
+	@OneToMany(cascade = CascadeType.ALL)
 	private List <SKU> skus;
 
 }

@@ -39,11 +39,11 @@ public class ProductServiceImpl implements ProductService {
 	public Product updateProduct(Integer categoryId, Integer subCategoryId, Integer productId, Product product) {
 		List<Product> products = getProductsBySubCategoryAndCategory(categoryId, subCategoryId);
 		Product productToUpdate = getProduct(productId, products);
-		productToUpdate.setCategory(product.getCategory());
+		productToUpdate.setCategoryId(product.getCategoryId());
 		productToUpdate.setCurrency(product.getCurrency());
 		productToUpdate.setDescription(product.getDescription());
 		productToUpdate.setProductName(product.getProductName());
-		productToUpdate.setSubcategory(product.getSubcategory());
+		productToUpdate.setSubcategoryId(product.getSubcategoryId());
 		return productToUpdate;
 	}
 

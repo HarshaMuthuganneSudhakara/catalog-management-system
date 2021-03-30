@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,9 +29,11 @@ public class SKU implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer skuId;
 	
+	@NotEmpty(message = "NAME cannot be null or empty")
 	@Column(name = "NAME")
 	private String name;
 	
+	@NotEmpty(message = "DESCRIPTION cannot be null or empty")
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
@@ -39,14 +43,15 @@ public class SKU implements Serializable {
 	@Column(name = "SALE_PRICE")
 	private double salePrice;
 	
+	@NotEmpty(message = "INVENTORY_TYPE cannot be null or empty")
 	@Column(name = "INVENTORY_TYPE")
 	private String inventoryType;
 	
 	@Column(name = "QUANTITY_AVAILABLE")
 	private double quantityAvailable;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PRODUCT_ID")
-	private Product product;
+	@NotNull(message = "PRODUCT_ID cannot be null or empty")
+	@Column(name = "PRODUCT_ID")
+	private Integer productId;
 	
 }

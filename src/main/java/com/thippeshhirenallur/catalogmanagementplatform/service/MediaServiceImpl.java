@@ -50,7 +50,7 @@ public class MediaServiceImpl implements MediaService {
 		Media mediaToUpdate = getMedia(medias, mediaId);
 		mediaToUpdate.setAltText(media.getAltText());
 		mediaToUpdate.setImageUrl(media.getImageUrl());
-		mediaToUpdate.setProduct(media.getProduct());	
+		mediaToUpdate.setProductId(media.getProductId());	
 		return mediaToUpdate;
 	}
 

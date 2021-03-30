@@ -3,6 +3,9 @@ package com.thippeshhirenallur.catalogmanagementplatform.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +22,16 @@ public class SubCategory implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer subCategoryId;
 
+	@NotEmpty(message = "SUBCATEGORY_NAME cannot be null or empty")
 	@Column(name = "SUBCATEGORY_NAME")
 	private String subCategoryName;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY_ID")
-	private Category category;
 	
-	@OneToMany(mappedBy = "subcategory", cascade = {
-	        CascadeType.ALL
-	    })
+	@NotNull(message = "CATEGORY_ID cannot be null or empty")
+	@Column(name = "CATEGORY_ID")
+	private Integer categoryId;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "SUBCATEGORY_ID")
 	private List<Product> products;
 	
 }

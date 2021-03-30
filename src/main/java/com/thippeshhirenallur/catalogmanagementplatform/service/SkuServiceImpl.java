@@ -50,7 +50,7 @@ public class SkuServiceImpl implements SkuService{
 		skuToUpdate.setDescription(sku.getDescription());
 		skuToUpdate.setInventoryType(sku.getInventoryType());
 		skuToUpdate.setName(sku.getName());
-		skuToUpdate.setProduct(sku.getProduct());
+		skuToUpdate.setProductId(sku.getProductId());
 		skuToUpdate.setQuantityAvailable(sku.getQuantityAvailable());
 		skuToUpdate.setRetailPrice(sku.getRetailPrice());
 		skuToUpdate.setSalePrice(sku.getSalePrice());

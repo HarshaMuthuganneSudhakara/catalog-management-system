@@ -3,6 +3,9 @@ package com.thippeshhirenallur.catalogmanagementplatform.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 
 @Entity
@@ -17,13 +20,15 @@ public class Media implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer mediaId;
 
+	@NotEmpty(message = "IMAGE_URL cannot be null or empty")
 	@Column(name = "IMAGE_URL")
 	private String imageUrl;
 
+	@NotEmpty(message = "ALT_TEXT cannot be null or empty")
 	@Column(name = "ALT_TEXT")
 	private String altText;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PRODUCT_ID")
-	private Product product;
+	@NotNull(message = "PRODUCT_ID cannot be null or empty")
+	@Column(name = "PRODUCT_ID")
+	private Integer productId;
 }
