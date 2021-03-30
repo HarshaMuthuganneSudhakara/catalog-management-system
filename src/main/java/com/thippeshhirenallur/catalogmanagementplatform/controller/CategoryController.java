@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Category;
 import com.thippeshhirenallur.catalogmanagementplatform.service.CategoryService;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/categories")
+@Api(tags= {"Category API's"} ) 
 public class CategoryController {
 	
 	private final CategoryService categoryService;

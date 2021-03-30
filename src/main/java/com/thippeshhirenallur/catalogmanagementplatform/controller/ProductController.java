@@ -18,9 +18,10 @@ import com.thippeshhirenallur.catalogmanagementplatform.entity.Product;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
 import com.thippeshhirenallur.catalogmanagementplatform.service.ProductService;
 import com.thippeshhirenallur.catalogmanagementplatform.service.SubCategoryService;
-
+import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/products")
+@Api(tags= {"Product API's"} ) 
 public class ProductController {
 	
 	private final ProductService productService;

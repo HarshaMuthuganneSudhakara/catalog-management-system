@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Media;
 import com.thippeshhirenallur.catalogmanagementplatform.service.MediaService;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/medias")
+@Api(tags= {"Media API's"} ) 
 public class MediaController {
 	
 	private final MediaService mediaService;

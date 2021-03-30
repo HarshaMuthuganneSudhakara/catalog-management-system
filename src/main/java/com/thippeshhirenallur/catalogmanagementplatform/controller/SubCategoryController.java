@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
 import com.thippeshhirenallur.catalogmanagementplatform.service.SubCategoryService;
-
+import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/subcategories")
+@Api(tags= {"SubCategory API's"} ) 
 public class SubCategoryController {
 
 	private final SubCategoryService subCategoryService;

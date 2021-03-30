@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SKU;
 import com.thippeshhirenallur.catalogmanagementplatform.service.SkuService;
-
+import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/skus")
+@Api(tags= {"SKU API's"} ) 
 public class SkuController {
 	
 	private final SkuService skuService;
