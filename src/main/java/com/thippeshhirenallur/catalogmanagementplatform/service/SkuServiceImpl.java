@@ -11,6 +11,7 @@ import com.thippeshhirenallur.catalogmanagementplatform.entity.Category;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Product;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SKU;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
+import com.thippeshhirenallur.catalogmanagementplatform.exception.ResourceNotFoundException;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.CategoryRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.ProductRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.SkuRepository;
@@ -33,7 +34,11 @@ public class SkuServiceImpl implements SkuService{
 	public List<SKU> getSKUsByProductSubCategoryAndCategory(Integer categoryId, Integer subCategoryId,
 			Integer productId) {
 		List<Product> products = getProductsBySubCategoryAndCategory(categoryId, subCategoryId);
+		if(products == null)
+			throw new ResourceNotFoundException("Products Not Found for a given input data");
 		Product product = getProduct(productId,products);
+		if(product == null)
+			throw new ResourceNotFoundException("Product Not Found for a given input data");
 		return product.getSkus();
 	}
 
@@ -47,6 +52,8 @@ public class SkuServiceImpl implements SkuService{
 			SKU sku) {
 		List<SKU> skus = getSKUsByProductSubCategoryAndCategory(categoryId, subCategoryId,productId);
 		SKU skuToUpdate = getSKU(skus, skuId);
+		if(skuToUpdate == null)
+			throw new ResourceNotFoundException("skuToUpdate Not Found for a given input data");
 		skuToUpdate.setDescription(sku.getDescription());
 		skuToUpdate.setInventoryType(sku.getInventoryType());
 		skuToUpdate.setName(sku.getName());
@@ -87,7 +94,11 @@ public class SkuServiceImpl implements SkuService{
 	
 	public List<Product> getProductsBySubCategoryAndCategory(Integer categoryId, Integer subCategoryId) {
 		List<SubCategory> subCategories = getSubCategoriesByCategory(categoryId);
+		if(subCategories == null)
+			throw new ResourceNotFoundException("subCategories Not Found for a given input data");
 		SubCategory subCategory = getSubCategory(subCategoryId, subCategories);
+		if(subCategory == null)
+			throw new ResourceNotFoundException("subCategory Not Found for a given input data");
 		return subCategory.getProducts();
 	}
 	

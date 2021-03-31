@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Media;
+import com.thippeshhirenallur.catalogmanagementplatform.exception.ResourceNotFoundException;
 import com.thippeshhirenallur.catalogmanagementplatform.service.MediaService;
 import io.swagger.annotations.Api;
 
@@ -34,6 +35,8 @@ public class MediaController {
 	@GetMapping(value = "/{categoryId}/{subCategoryId}/{productId}")
 	public ResponseEntity<List<Media>> getMedias(@PathVariable final Integer categoryId, @PathVariable final Integer subCategoryId,@PathVariable final Integer productId) {
 		List<Media> medias = mediaService.getMediasByProductSubCategoryAndCategory(categoryId, subCategoryId, productId);
+		if(medias == null)
+			throw new ResourceNotFoundException("Medias Not Found");
 		return new ResponseEntity<>(medias, HttpStatus.OK);
 	}
 	

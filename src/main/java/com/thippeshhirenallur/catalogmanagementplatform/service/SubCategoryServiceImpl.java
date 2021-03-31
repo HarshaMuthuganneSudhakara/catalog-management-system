@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Category;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
+import com.thippeshhirenallur.catalogmanagementplatform.exception.ResourceNotFoundException;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.CategoryRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.SubCategoryRepository;
 
@@ -28,7 +29,11 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 
 	public SubCategory updateSubCategory(Integer categoryId, Integer subCategoryId, SubCategory subCategory) {
 		List<SubCategory> subCategories = getSubCategoriesByCategory(categoryId);
+		if(subCategories == null)
+			throw new ResourceNotFoundException("subCategories Not Found for a given input data");
 		SubCategory subCategoryToUpdate = getSubCategory(subCategoryId, subCategories);
+		if(subCategoryToUpdate == null)
+			throw new ResourceNotFoundException("subCategoryToUpdate Not Found for a given input data");
 		if (subCategoryToUpdate != null) {
 			subCategoryToUpdate.setCategoryId(subCategory.getCategoryId());
 			subCategoryToUpdate.setSubCategoryName(subCategory.getSubCategoryName());
@@ -38,7 +43,11 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 
 	public SubCategory deleteSubCategory(Integer categoryId, Integer subCategoryId) {
 		List<SubCategory> subCategories = getSubCategoriesByCategory(categoryId);
+		if(subCategories == null)
+			throw new ResourceNotFoundException("subCategories Not Found for a given input data");
 		SubCategory subCategoryToDelete = getSubCategory(subCategoryId, subCategories);
+		if(subCategoryToDelete == null)
+			throw new ResourceNotFoundException("subCategoryToDelete Not Found for a given input data");
 		if (subCategoryToDelete != null)
 			subCategoryRepository.delete(subCategoryToDelete);
 		return subCategoryToDelete;

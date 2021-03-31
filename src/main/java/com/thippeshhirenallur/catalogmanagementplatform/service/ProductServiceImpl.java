@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Category;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Product;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
+import com.thippeshhirenallur.catalogmanagementplatform.exception.ResourceNotFoundException;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.CategoryRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.ProductRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.SubCategoryRepository;
@@ -28,7 +29,11 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<Product> getProductsBySubCategoryAndCategory(Integer categoryId, Integer subCategoryId) {
 		List<SubCategory> subCategories = getSubCategoriesByCategory(categoryId);
+		if(subCategories == null)
+			throw new ResourceNotFoundException("subCategories Not Found for a given input data");
 		SubCategory subCategory = getSubCategory(subCategoryId, subCategories);
+		if(subCategory == null)
+			throw new ResourceNotFoundException("subCategory Not Found for a given input data");
 		return subCategory.getProducts();
 	}
 
@@ -39,6 +44,8 @@ public class ProductServiceImpl implements ProductService {
 	public Product updateProduct(Integer categoryId, Integer subCategoryId, Integer productId, Product product) {
 		List<Product> products = getProductsBySubCategoryAndCategory(categoryId, subCategoryId);
 		Product productToUpdate = getProduct(productId, products);
+		if(productToUpdate == null)
+			throw new ResourceNotFoundException("productToUpdate Not Found for a given input data");
 		productToUpdate.setCategoryId(product.getCategoryId());
 		productToUpdate.setCurrency(product.getCurrency());
 		productToUpdate.setDescription(product.getDescription());

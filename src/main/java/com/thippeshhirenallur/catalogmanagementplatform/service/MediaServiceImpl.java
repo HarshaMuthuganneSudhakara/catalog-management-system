@@ -11,6 +11,7 @@ import com.thippeshhirenallur.catalogmanagementplatform.entity.Category;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Media;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.Product;
 import com.thippeshhirenallur.catalogmanagementplatform.entity.SubCategory;
+import com.thippeshhirenallur.catalogmanagementplatform.exception.ResourceNotFoundException;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.CategoryRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.MediaRepository;
 import com.thippeshhirenallur.catalogmanagementplatform.repository.ProductRepository;
@@ -34,7 +35,11 @@ public class MediaServiceImpl implements MediaService {
 	public List<Media> getMediasByProductSubCategoryAndCategory(Integer categoryId, Integer subCategoryId,
 			Integer productId) {
 		List<Product> products = getProductsBySubCategoryAndCategory(categoryId, subCategoryId);
+		if(products == null)
+			throw new ResourceNotFoundException("Products Not Found for a given input data");
 		Product product = getProduct(productId,products);
+		if(product == null)
+			throw new ResourceNotFoundException("Product Not Found for a given input data");
 		return product.getMedias();
 	}
 
@@ -47,7 +52,11 @@ public class MediaServiceImpl implements MediaService {
 	public Media updateMedia(Integer categoryId, Integer subCategoryId, Integer productId, Integer mediaId,
 			Media media) {
 		List<Media> medias = getMediasByProductSubCategoryAndCategory(categoryId, subCategoryId,productId);
+		if(medias == null)
+			throw new ResourceNotFoundException("Medias Not Found for a given input data");
 		Media mediaToUpdate = getMedia(medias, mediaId);
+		if(mediaToUpdate == null)
+			throw new ResourceNotFoundException("Media to be updated is not found");
 		mediaToUpdate.setAltText(media.getAltText());
 		mediaToUpdate.setImageUrl(media.getImageUrl());
 		mediaToUpdate.setProductId(media.getProductId());	
@@ -82,7 +91,11 @@ public class MediaServiceImpl implements MediaService {
 	
 	public List<Product> getProductsBySubCategoryAndCategory(Integer categoryId, Integer subCategoryId) {
 		List<SubCategory> subCategories = getSubCategoriesByCategory(categoryId);
+		if(subCategories == null)
+			throw new ResourceNotFoundException("subCategories Not Found for a given input data");
 		SubCategory subCategory = getSubCategory(subCategoryId, subCategories);
+		if(subCategory == null)
+			throw new ResourceNotFoundException("subCategory Not Found for a given input data");
 		return subCategory.getProducts();
 	}
 	
