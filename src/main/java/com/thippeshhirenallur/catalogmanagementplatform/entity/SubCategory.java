@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @SuppressWarnings("serial")
-public class SubCategory implements Serializable {
+public class SubCategory extends Audit implements Serializable {
 
 	@Id
 	@Column(name = "SUBCATEGORY_ID")

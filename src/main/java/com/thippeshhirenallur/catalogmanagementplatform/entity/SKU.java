@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @SuppressWarnings("serial")
-public class SKU implements Serializable {
+public class SKU extends Audit implements Serializable {
 	
 	@Id
 	@Column(name = "SKU_ID")

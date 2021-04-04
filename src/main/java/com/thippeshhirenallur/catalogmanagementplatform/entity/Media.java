@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
+
 import java.io.Serializable;
 
 @Entity
@@ -13,7 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @SuppressWarnings("serial")
-public class Media implements Serializable {
+public class Media extends Audit implements Serializable {
 
 	@Id
 	@Column(name = "MEDIA_ID")
