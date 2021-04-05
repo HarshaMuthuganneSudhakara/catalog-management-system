@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ public class SKU extends Audit implements Serializable {
 	@Id
 	@Column(name = "SKU_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
 	private Integer skuId;
 	
 	@NotEmpty(message = "NAME cannot be null or empty")

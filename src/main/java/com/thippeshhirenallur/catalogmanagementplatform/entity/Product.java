@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 
 import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class Product extends Audit implements Serializable {
 
 	@Id
 	@Column(name = "PRODUCT_ID")
+	@ApiModelProperty(hidden = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productId;
 

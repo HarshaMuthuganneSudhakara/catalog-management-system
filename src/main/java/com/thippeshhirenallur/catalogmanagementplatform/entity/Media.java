@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 
 import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 @Entity
@@ -19,6 +21,7 @@ public class Media extends Audit implements Serializable {
 
 	@Id
 	@Column(name = "MEDIA_ID")
+	@ApiModelProperty(hidden = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer mediaId;
 

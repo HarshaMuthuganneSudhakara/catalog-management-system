@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 
 import com.thippeshhirenallur.catalogmanagementplatform.model.Audit;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class SubCategory extends Audit implements Serializable {
 	@Id
 	@Column(name = "SUBCATEGORY_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
 	private Integer subCategoryId;
 
 	@NotEmpty(message = "SUBCATEGORY_NAME cannot be null or empty")
