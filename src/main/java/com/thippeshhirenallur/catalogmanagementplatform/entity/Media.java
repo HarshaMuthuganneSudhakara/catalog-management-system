@@ -35,5 +35,6 @@ public class Media extends Audit implements Serializable {
 
 	@NotNull(message = "PRODUCT_ID cannot be null or empty")
 	@Column(name = "PRODUCT_ID")
+	@ApiModelProperty(hidden = true)
 	private Integer productId;
 }

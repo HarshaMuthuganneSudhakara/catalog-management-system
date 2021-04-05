@@ -33,6 +33,7 @@ public class SubCategory extends Audit implements Serializable {
 	
 	@NotNull(message = "CATEGORY_ID cannot be null or empty")
 	@Column(name = "CATEGORY_ID")
+	@ApiModelProperty(hidden = true)
 	private Integer categoryId;
 	
 	@OneToMany(cascade = CascadeType.ALL)

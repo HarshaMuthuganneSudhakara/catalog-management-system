@@ -44,10 +44,12 @@ public class Product extends Audit implements Serializable {
 	
 	@NotNull(message = "CATEGORY_ID cannot be null or empty")
 	@Column(name = "CATEGORY_ID")
+	@ApiModelProperty(hidden = true)
 	private Integer categoryId;
 	
 	@NotNull(message = "SUBCATEGORY_ID cannot be null or empty")
 	@Column(name = "SUBCATEGORY_ID")
+	@ApiModelProperty(hidden = true)
 	private Integer subcategoryId;
 	
 	@OneToMany(cascade = CascadeType.ALL)
